@@ -52,9 +52,13 @@
 	<div class="row">
 		<div class="twelve columns">
 			<?php foreach ($blogs as $blog){ ?>
-				<h3><?php echo $blog['title']; ?></h3>
-				<div class="content">
-					<?php echo $blog['content']; ?>
+				<div class="row">
+					<div class="six columns panel">
+						<h3><?php echo $blog['title']; ?></h3>
+						<div class="content">
+							<?php echo $blog['content']; ?>
+						</div>
+					</div>
 				</div>
 			<?php } ?>
 		</div>

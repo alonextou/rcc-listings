@@ -8,7 +8,7 @@
     	$dbStatus = 'The database is NOT connected.';
     }
 
-    echo '<h4>The database is connected...</h4>';
+    echo '<h4>'.$dbStatus.'</h4>';
 
     try{
 	    $sql = "DROP TABLE IF EXISTS blogs";
