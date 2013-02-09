@@ -12,6 +12,8 @@
 
     $title = 'Blog';
 
+    $blog = getBlogById($db, $_GET['id']);
+
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +29,9 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title><?php echo $title; ?></title>
-	<link rel="stylesheet" href="css/foundation.min.css">
-	<link rel="stylesheet" href="css/default.css">
-	<script src="js/foundation/modernizr.foundation.js"></script>
+	<link rel="stylesheet" href="/css/foundation.min.css">
+	<link rel="stylesheet" href="/css/default.css">
+	<script src="/js/foundation/modernizr.foundation.js"></script>
 </head>
 
 <body>
@@ -44,25 +46,23 @@
 	<!-- TODO: seperate the following menu into partials/menu.php, and include it here. -->
 	<div id="menu" class="row">
 		<ul class="nav-bar">
-			<li class=""><a href="index.php">Home</a></li>
-			<li class="active"><a href="blog.php">Blog</a></li>
+			<li class=""><a href="/index.php">Home</a></li>
+			<li class="active"><a href="/blogs.php">Blog</a></li>
 		</ul>
 	</div>
 
 	<div class="row">
 		<div class="twelve columns">
-			<?php foreach ($blogs as $blog){ ?>
-				<div class="row">
-					<div class="six columns panel">
-						<h3><?php echo $blog['title']; ?></h3>
-						<div class="content">
-							<?php echo $blog['content']; ?>
-						</div>
-					</div>
-				</div>
-			<?php } ?>
+			<form action="/models/blog.php" method="post">
+				<input type="text" name="title" placeholder="Title" value="<?php echo $blog['title']; ?>" />
+				<textarea name="content" placeholder="Content"><?php echo $blog['content']; ?></textarea>
+				<input type="hidden" name="id" value="<?php echo $blog['id']; ?>" />
+				<input type="submit" name="update" value="Update" class="button success"></input>
+			</form>
 		</div>
 	</div>
+	
+	<script src="/js/foundation/foundation.min.js"></script>
 
 </body>
 </html>
