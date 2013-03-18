@@ -1,8 +1,8 @@
 <?php
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/libraries/connect.php';
-	
-	include_once $_SERVER['DOCUMENT_ROOT'].'/models/job.php';
+
+    include_once $_SERVER['DOCUMENT_ROOT'].'/models/blog.php';
 
     if($db){
         $dbStatus = 'The database is connected.';
@@ -10,7 +10,9 @@
     	$dbStatus = 'The database is NOT connected.';
     }
 
-    $title = 'RCC Job Listings';
+    $title = 'Blog';
+
+    $item = getBlogById($db, $_GET['id']);
 	
 	include $_SERVER['DOCUMENT_ROOT'].'/partials/header.php';
 
@@ -26,23 +28,12 @@
 	</div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT'].'/partials/menu.php'; ?>
-	
-	<div class="row">
-		<div class="nine columns">
 
-			
-		
-		</div>
-		<div class="three columns">
-			<a class=" button twelve" href="/users/new.php">Register</a>
-			
+	<div class="row">
+		<div class="twelve columns">
+			<h3><?php echo $item['title']; ?></h3>
 			<div class="panel">
-			<h5>Latest Job Listings</h5>
-			<?php foreach (latestJobs($db) as $job) { ?>
-				<hr>
-				<h5><a href="Jobs.php"><?php echo $job['title']; ?></a></h5>
-				<a href="Jobs.php"><strong>Listed:</strong> <?php echo $job['listed']; ?></a>					
-			<?php } ?>
+				<?php echo $item['content']; ?>
 			</div>
 		</div>
 	</div>

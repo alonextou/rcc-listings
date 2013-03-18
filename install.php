@@ -24,6 +24,8 @@
     } else {
     	printError('The database is NOT connected.');
     }
+	
+	/* Blogs */
 
     try{
 	    $sql = "DROP TABLE IF EXISTS blogs";
@@ -42,6 +44,56 @@
 		printMessage($result->queryString);
 	} catch (PDOException $e) {
 		die(printError($e->getMessage()));
+	}
+	
+	/* Jobs */
+	
+	try{
+	    $sql = "DROP TABLE IF EXISTS jobs";
+		$result = $db->query($sql);
+	} catch (PDOException $e) {
+		die($e->getMessage());
+	}
+
+	try{
+		$sql = "CREATE TABLE IF NOT EXISTS jobs (
+			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			title VARCHAR(200) NOT NULL,
+			description TEXT NOT NULL,
+			listed TIMESTAMP DEFAULT NOW(),
+			company VARCHAR(30),
+			contact VARCHAR(30) NOT NULL,
+			location VARCHAR(30) NOT NULL,
+			telecommute VARCHAR(5) NOT NULL,
+			contact_email VARCHAR(60) NOT NULL,
+			pays VARCHAR(30),
+			hired DATE,
+			dev_id INT		
+		)";
+		$result = $db->query($sql);
+		printMessage($result->queryString);
+	} catch (PDOException $e) {
+		die(printError($e->getMessage()));
+	}
+	
+	/* Users */
+	
+	try{
+	    $sql = "DROP TABLE IF EXISTS users";
+		$result = $db->query($sql);
+	} catch (PDOException $e) {
+		die($e->getMessage());
+	}
+
+	try{
+		$sql = "CREATE TABLE IF NOT EXISTS users (
+			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			name VARCHAR(32) NOT NULL, address VARCHAR(100) NOT NULL, city VARCHAR(32) NOT NULL, state VARCHAR(32) NOT NULL, zip VARCHAR(10) NOT NULL, phone VARCHAR(12) NOT NULL, email VARCHAR(32)
+		)";
+		$result = $db->query($sql);
+		printMessage($result->queryString);
+	} catch (PDOException $e) {
+		die($e->getMessage());
 	}
 
 	/* Put your SQL installation code here:
@@ -66,7 +118,7 @@
 
 	*/
 
-	// Place any templrary sample data here:
+	/* Blogs Data */
 
     try{
 	    $sql = "INSERT INTO blogs (title, content) VALUES ('My First Blog Title', '<p>Blog Content!</p>')";
@@ -83,6 +135,30 @@
 	} catch (PDOException $e) {
 		die(printError($e->getMessage()));
 	}
+	
+	/* Jobs Data */
+	
+	try{
+	    $description = "<p>First Job description! With lots and lots of text to fill up lots and lots of space so we can see what happens. "
+			. "We want the main job board to truncate this stuff after so many characters, so that you have to click the link to read more.</p>";
+		$sql = "INSERT INTO jobs (title, description, company, contact, contact_email, pays)
+			VALUES ('My First Job Title', '" . $description . "', 'Name of Sample Business', 'Contact', 'contact@sample.com', '\$500.00')";
+		$result = $db->query($sql);
+		printMessage($result->queryString);
+	} catch (PDOException $e) {
+		die(printError($e->getMessage()));
+	}
+
+	try{
+	    $sql = "INSERT INTO jobs (title, description, company, contact, contact_email, pays)
+			VALUES ('My Second Job Title', '<p>Second Job description!</p>', 'Name of Business 2', 'Contact 2', 'contact_2@sample_2.com', 'maybe')";
+		$result = $db->query($sql);
+		printMessage($result->queryString);
+	} catch (PDOException $e) {
+		die(printError($e->getMessage()));
+	}
+	
+	/* Functions */
 
 	// Function to print each message
 	function printMessage($message) {
