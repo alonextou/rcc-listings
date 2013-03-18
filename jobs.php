@@ -47,7 +47,6 @@
 		<div class="nine columns">
 			<?php foreach (getJobs($db) as $job){ ?>
 				<form action="/models/job.php" method="post">
-					<a href="/jobs/edit.php?id=<?php echo $job['id']; ?>" class="button small">Edit</a>
 					<input type="submit" name="delete" value="Delete" class="button alert small"></input>
 					<input type="hidden" name="id" value="<?php echo $job['id']; ?>" />
 				</form>
