@@ -30,7 +30,7 @@
 	<div class="row">
 		<div class="nine columns">
 
-			
+			<img src="images/logo.jpg">
 		
 		</div>
 		<div class="three columns">
