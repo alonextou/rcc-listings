@@ -10,7 +10,7 @@
     	$dbStatus = 'The database is NOT connected.';
     }
 
-    $title = 'RCC Job Listings';
+    $title = 'Home';
 	
 	include $_SERVER['DOCUMENT_ROOT'].'/partials/header.php';
 
@@ -46,6 +46,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		var pageTitle = '<?php echo strtolower($title); ?>';
+	</script>
 	
 	<?php include $_SERVER['DOCUMENT_ROOT'].'/partials/footer.php'; ?>
 

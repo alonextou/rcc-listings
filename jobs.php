@@ -91,6 +91,10 @@
 		</form>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+	
+	<script type="text/javascript">
+		var pageTitle = '<?php echo strtolower($title); ?>';
+	</script>
 
 	<?php include $_SERVER['DOCUMENT_ROOT'].'/partials/footer.php'; ?>
 
